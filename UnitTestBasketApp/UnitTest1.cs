@@ -1,4 +1,5 @@
 using BasketApp;
+using BasketApp.Extensions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 
@@ -35,7 +36,7 @@ namespace UnitTestBasketApp
             //Assert
             Assert.IsNotNull(prod);
             Assert.AreEqual(name, prod.Name);
-            Assert.AreEqual(cost, prod.Cost); 
+            Assert.AreEqual(cost, prod.Cost);
         }
 
         [TestMethod]
@@ -61,7 +62,7 @@ namespace UnitTestBasketApp
             Product prod = new Product("Butter", 80);
             LineItem line = new LineItem(prod, 34);
             Basket basket = new Basket(new List<LineItem> { line });
-            
+
             //Assert
             Assert.IsNotNull(basket);
         }
@@ -84,6 +85,44 @@ namespace UnitTestBasketApp
             //Assert//Assert
             Assert.IsNotNull(basket);
             Assert.AreEqual(itemCount, basket.ItemCount());
+        }
+
+        [TestMethod]
+        public void TestButter_Deal_Applies()
+        {
+            // Arrange
+            Product prod = new Product("Butter", 80);
+            LineItem line = new LineItem(prod, 34);
+            LineItem line2 = new LineItem(prod, 4);
+            Basket basket = new Basket(new List<LineItem> {
+                line,
+                line2,
+            });
+
+            //Act
+            var result = 0.00;
+
+            //Assert//Assert 
+            Assert.AreEqual(result, basket.ApplyButterDiscount());
+        }
+
+        [TestMethod]
+        public void TestMilk_Deal()
+        {
+            // Arrange
+            Product prod = new Product("Butter", 80);
+            LineItem line = new LineItem(prod, 34);
+            LineItem line2 = new LineItem(prod, 4);
+            Basket basket = new Basket(new List<LineItem> {
+                line,
+                line2,
+            });
+
+            //Act
+            var result = 0.00;
+
+            //Assert//Assert 
+            Assert.AreEqual(result, basket.ApplyMilkOffer());
         }
     }
 }
