@@ -23,7 +23,7 @@ namespace BasketApp
         public double GetBasketTotal()
         {
             return 0.00;
-        }
+        } 
 
     }
 }

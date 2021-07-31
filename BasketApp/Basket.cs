@@ -7,19 +7,27 @@ namespace BasketApp
 
     public class Basket : IBasket
     {
-        public List<LineItems> Line { get; set; }
+        public Basket(List<LineItem> items)
+        {
+            this.LineItems = items; 
+        }
+        public List<LineItem> LineItems { get; set; }
     }
 
     public interface IBasket
     {
-        List<LineItems> Line { get; set; }
+        List<LineItem> LineItems { get; set; }
     }
 
-    public class LineItems
+    public class LineItem
     {
-        public int Id { get; set; }
-        public Product Name { get; set; }
-        public int Units { get; set; }
+        public LineItem(Product productName, int unit)
+        {
+            this.ProductName = productName;
+            this.Unit = unit;
+        }
+        public Product ProductName { get; set; }
+        public int Unit { get; set; }
     }
 
 } 
