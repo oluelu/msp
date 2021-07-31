@@ -6,10 +6,8 @@ using System.Collections.Generic;
 namespace BasketApp.Extensions
 {
     public static class Deals
-    {
-        public static decimal PRICE_PER_UNIT_BUTTER = 0.80M;
-        public static decimal PRICE_PER_UNIT_BREAD = 1.00M;
-
+    { 
+        // Returns cost of Bread & Butter
         public static decimal ApplyButterDiscount(this IBasket basket)
         { 
             if(basket.ItemCount() == 0) return 0.00M;
@@ -22,56 +20,52 @@ namespace BasketApp.Extensions
             decimal pucBread = 0; 
 
             basket.LineItems.ForEach(product => {
-                if (product.Item.Name == "Butter")
+                if (product.Item.Name == config.BUTTER)
                 {
                     butterCount += product.Unit;
                 }
 
-                if (product.Item.Name == "Bread")
+                if (product.Item.Name == config.BREAD)
                 {
                     breadCount += product.Unit;
                 }
             });
 
-            pucButter = butterCount * PRICE_PER_UNIT_BUTTER;
+            pucButter = butterCount * config.PRICE_PER_UNIT_BUTTER;
 
-            //pair of butter
             dealCount = butterCount / 2;
             if (dealCount > 0)
             {
                 if (breadCount >= dealCount)
                 {
-                    pucBread = (dealCount * 0.5M * PRICE_PER_UNIT_BREAD) + ((breadCount - dealCount) * PRICE_PER_UNIT_BREAD);
+                    pucBread = (dealCount * 0.5M * config.PRICE_PER_UNIT_BREAD) + ((breadCount - dealCount) * config.PRICE_PER_UNIT_BREAD);
                 }
                 else
                 {
-                    pucBread = dealCount * 0.5M * PRICE_PER_UNIT_BREAD;
+                    pucBread = dealCount * 0.5M * config.PRICE_PER_UNIT_BREAD;
                 }
             }
             else
             {
-                pucBread = breadCount * PRICE_PER_UNIT_BREAD; 
+                pucBread = breadCount * config.PRICE_PER_UNIT_BREAD; 
             }
             return pucBread + pucButter;
-
-            ////how many butter
-            //List<LineItem> butter = basket.LineItems.FindAll(x => x.Item.Name == "Butter");
-            //if (butter.Count > 0)
-            //{
-            //    butter.ForEach(item => {
-            //        butterCount += item.Unit;
-            //    });
-
-            //    dealCount = butterCount / 2;
-            //}
-
-            //var breadCount = basket.LineItems.FindAll(x => x.Item.Name == "Bread").Count;
         }
+
         public static decimal ApplyMilkOffer(this IBasket basket)
         {
             if (basket.ItemCount() == 0) return 0.00M;
 
-            return 0.00M;
+            int milkCount = 0;
+
+            basket.LineItems.ForEach(product => {
+                if (product.Item.Name == config.MILK)
+                {
+                    milkCount += product.Unit;
+                } 
+            });
+            var totalPrice =  (milkCount / 3) * 2* config.PRICE_PER_UNIT_MILK + Math.Floor((decimal)(milkCount % 3)) * config.PRICE_PER_UNIT_MILK;
+            return totalPrice;
         }
 
         public static decimal ApplySumTotal(this IBasket basket)

@@ -16,8 +16,8 @@ namespace BasketApp
 
         void ApplyDeals()
         {
-            _basket.ApplyButterDiscount();
-            _basket.ApplyMilkOffer();
+            Decimal runningTotal;
+            runningTotal = _basket.ApplyButterDiscount() +  _basket.ApplyMilkOffer();
         }
 
         public decimal GetBasketTotal()
