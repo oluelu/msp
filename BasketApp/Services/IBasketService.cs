@@ -4,7 +4,7 @@ using System.Text;
 
 namespace BasketApp
 {
-    public interface IService
+    public interface IBasketService
     {
         decimal GetBasketTotal();
     }

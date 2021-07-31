@@ -1,7 +1,5 @@
-﻿
-
+﻿using BasketApp.Models;
 using System;
-using System.Collections.Generic;
 
 namespace BasketApp.Extensions
 {
@@ -16,8 +14,8 @@ namespace BasketApp.Extensions
             int breadCount= 0;
             int dealCount = 0;
 
-            decimal pucButter = 0;
-            decimal pucBread = 0; 
+            decimal subTotal_Butter = 0;
+            decimal subTotal_Bread = 0; 
 
             basket.LineItems.ForEach(product => {
                 if (product.Item.Name == config.BUTTER)
@@ -31,25 +29,25 @@ namespace BasketApp.Extensions
                 }
             });
 
-            pucButter = butterCount * config.PRICE_PER_UNIT_BUTTER;
+            subTotal_Butter = butterCount * config.PRICE_PER_UNIT_BUTTER;
 
             dealCount = butterCount / 2;
             if (dealCount > 0)
             {
                 if (breadCount >= dealCount)
                 {
-                    pucBread = (dealCount * 0.5M * config.PRICE_PER_UNIT_BREAD) + ((breadCount - dealCount) * config.PRICE_PER_UNIT_BREAD);
+                    subTotal_Bread = (dealCount * 0.5M * config.PRICE_PER_UNIT_BREAD) + ((breadCount - dealCount) * config.PRICE_PER_UNIT_BREAD);
                 }
                 else
                 {
-                    pucBread = dealCount * 0.5M * config.PRICE_PER_UNIT_BREAD;
+                    subTotal_Bread = dealCount * 0.5M * config.PRICE_PER_UNIT_BREAD;
                 }
             }
             else
             {
-                pucBread = breadCount * config.PRICE_PER_UNIT_BREAD; 
+                subTotal_Bread = breadCount * config.PRICE_PER_UNIT_BREAD; 
             }
-            return pucBread + pucButter;
+            return subTotal_Bread + subTotal_Butter;
         }
 
         public static decimal ApplyMilkOffer(this IBasket basket)

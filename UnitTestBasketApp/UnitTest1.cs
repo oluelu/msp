@@ -1,8 +1,8 @@
 using BasketApp;
 using BasketApp.Extensions;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
+using BasketApp.Models;
 using System.Collections.Generic;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace UnitTestBasketApp
 {
@@ -13,7 +13,7 @@ namespace UnitTestBasketApp
         public void TestBasket_Balance_Is_Returned()
         {
             // Arrange
-            Services basketService = new Services(null);
+            BasketServices basketService = new BasketServices(null);
 
             // Act
             decimal testResult = 0.00M;
@@ -26,7 +26,7 @@ namespace UnitTestBasketApp
         public void TestProduct_Is_Created()
         {
             // Arrange
-            Product prod = new Product("Butter", 80);
+            Product prod = new Product(config.BUTTER, 80);
 
             // Act
             string name = "Butter";
@@ -42,7 +42,7 @@ namespace UnitTestBasketApp
         public void TestLine_Is_Created()
         {
             // Arrange
-            Product prod = new Product("Butter", 80);
+            Product prod = new Product(config.BUTTER, 80);
             LineItem line = new LineItem(prod, 34);
 
             // Act
@@ -58,7 +58,7 @@ namespace UnitTestBasketApp
         public void TestBasket_Is_Created()
         {
             // Arrange
-            Product prod = new Product("Butter", 80);
+            Product prod = new Product(config.BUTTER, 80);
             LineItem line = new LineItem(prod, 34);
             Basket basket = new Basket(new List<LineItem> { line });
 
@@ -70,7 +70,7 @@ namespace UnitTestBasketApp
         public void TestBasket_Has_Multiple_Items()
         {
             // Arrange
-            Product prod = new Product("Butter", 80);
+            Product prod = new Product(config.BUTTER, 80);
             LineItem line = new LineItem(prod, 34);
             LineItem line2 = new LineItem(prod, 4);
             Basket basket = new Basket(new List<LineItem> { line,line2 });

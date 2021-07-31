@@ -1,18 +1,16 @@
 ﻿using BasketApp.Extensions;
-using System;
-using System.Collections.Generic;
-using System.Text;
+using BasketApp.Models;
 
 namespace BasketApp
 {
-   public class Services : IService
+    public class BasketServices : IBasketService
     {
         private Basket _basket;
 
-        public Services(Basket basket)
+        public BasketServices(Basket basket)
         {
             _basket = basket;
-        } 
+        }
 
         public decimal GetBasketTotal()
         {

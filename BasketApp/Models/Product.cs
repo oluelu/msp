@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace BasketApp
+namespace BasketApp.Models
 {
     public class Product
     {
