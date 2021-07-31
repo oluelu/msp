@@ -66,22 +66,24 @@ namespace UnitTestBasketApp
             Assert.IsNotNull(basket);
         }
 
-        //[TestMethod]
-        //public void TestBasket_Has_Multiple_Items()
-        //{
-        //    // Arrange
-        //    Product prod = new Product("Butter", 80);
-        //    LineItem line = new LineItem(prod, 34);
-        //    LineItem line2 = new LineItem(prod, 4);
-            
-        //    //Act
-        //    Basket basket = new Basket(new List<LineItem> {
-        //        line,
-        //        line2,
-        //    });
+        [TestMethod]
+        public void TestBasket_Has_Multiple_Items()
+        {
+            // Arrange
+            Product prod = new Product("Butter", 80);
+            LineItem line = new LineItem(prod, 34);
+            LineItem line2 = new LineItem(prod, 4);
+            Basket basket = new Basket(new List<LineItem> {
+                line,
+                line2,
+            });
 
-        //    //Assert//Assert
-        //    Assert.IsNotNull(basket); 
-        //}
+            //Act
+            var itemCount = 2;
+
+            //Assert//Assert
+            Assert.IsNotNull(basket);
+            Assert.AreEqual(itemCount, basket.ItemCount());
+        }
     }
 }

@@ -12,11 +12,17 @@ namespace BasketApp
             this.LineItems = items; 
         }
         public List<LineItem> LineItems { get; set; }
+
+        public int ItemCount()
+        {
+            return this.LineItems.Count;
+        }
     }
 
     public interface IBasket
     {
         List<LineItem> LineItems { get; set; }
+        int ItemCount();
     }
 
     public class LineItem
