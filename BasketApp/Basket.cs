@@ -30,7 +30,8 @@ namespace BasketApp
         public LineItem(Product productName, int unit)
         {
             this.Item = productName;
-            this.Unit = unit;
+            //assumes no negative items
+            this.Unit = unit >= 0 ? unit : 0;
         }
         public Product Item { get; set; }
         public int Unit { get; set; }

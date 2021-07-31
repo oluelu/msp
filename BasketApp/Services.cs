@@ -12,17 +12,17 @@ namespace BasketApp
         public Services(Basket basket)
         {
             _basket = basket;
-        }
-
-        void ApplyDeals()
-        {
-            Decimal runningTotal;
-            runningTotal = _basket.ApplyButterDiscount() +  _basket.ApplyMilkOffer();
-        }
+        } 
 
         public decimal GetBasketTotal()
         {
-            return 0.00M;
+            decimal outcome = 0.0M;
+            if (_basket != null)
+            {
+                outcome = _basket.ApplyButterDiscount() + _basket.ApplyMilkOffer();
+            }
+
+            return outcome;
         } 
 
     }

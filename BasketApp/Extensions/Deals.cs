@@ -68,11 +68,11 @@ namespace BasketApp.Extensions
             return totalPrice;
         }
 
-        public static decimal ApplySumTotal(this IBasket basket)
+        public static decimal GetSumTotal(this IBasket basket)
         {
             if (basket.ItemCount() == 0) return 0.00M;
 
-            return 0.00M;
+            return basket.ApplyButterDiscount() + basket.ApplyMilkOffer();
         }
     }
 }

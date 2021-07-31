@@ -84,12 +84,12 @@ namespace UnitTestBasketApp
         }
 
         [TestMethod] //review
-        public void TestButter_Deal_Applies()
+        public void TestButter_Offer_Init()
         {
             // Arrange
-            Product prod = new Product(config.BUTTER, 0);
-            LineItem line = new LineItem(prod, 0);
-            LineItem line2 = new LineItem(prod, 0);
+            Product product = new Product(config.BUTTER, 0);
+            LineItem line = new LineItem(product, -1);
+            LineItem line2 = new LineItem(product, -1);
             Basket basket = new Basket(new List<LineItem> { line, line2});
 
             //Act
@@ -100,7 +100,7 @@ namespace UnitTestBasketApp
         }
 
         [TestMethod]
-        public void TestButter_Deal_With_Item_Each()
+        public void Test_Butter_Offers()
         {
             // Arrange
             Product bread = new Product(config.BUTTER, config.PRICE_PER_UNIT_BUTTER);
@@ -108,18 +108,85 @@ namespace UnitTestBasketApp
             Product milk = new Product(config.MILK, config.PRICE_PER_UNIT_MILK);
             LineItem line1 = new LineItem(butter, 1);
             LineItem line2 = new LineItem(bread, 1);
-            LineItem line3 = new LineItem(milk, 1);
+            LineItem line3 = new LineItem(milk, 0);
             Basket basket = new Basket(new List<LineItem> { line1, line2, line3 });
 
             //Act
-            var result = 3.10M;
+            var result = 1.80M;
 
             //Assert//Assert 
             Assert.AreEqual(result, basket.ApplyButterDiscount());
         }
 
         [TestMethod]
-        public void TestButter_Deal_With__Muultiple_Items()
+        public void TestMilk_Deal()
+        {
+            // Arrange
+            Product item = new Product(config.MILK, config.PRICE_PER_UNIT_MILK);
+            LineItem line = new LineItem(item, 8);
+            Basket basket = new Basket(new List<LineItem> { line });
+
+            //Act
+            var result = 6.90M;
+
+            //Assert//Assert 
+            Assert.AreEqual(result, basket.ApplyMilkOffer());
+        }
+
+        [TestMethod]
+        public void Test_Scenario_1()
+        {
+            // Arrange
+            Product butter = new Product(config.BUTTER, config.PRICE_PER_UNIT_BUTTER);
+            Product bread = new Product(config.BREAD, config.PRICE_PER_UNIT_BREAD);
+            Product milk = new Product(config.MILK, config.PRICE_PER_UNIT_MILK);
+            LineItem line1 = new LineItem(butter, 1);
+            LineItem line2 = new LineItem(bread, 1);
+            LineItem line3 = new LineItem(milk, 1);
+            Basket basket = new Basket(new List<LineItem> { line1, line2, line3 });
+
+            //Act
+            var result = 2.95M;
+
+            //Assert//Assert 
+            Assert.AreEqual(result, basket.GetSumTotal());
+        }
+
+        [TestMethod]
+        public void Test_Scenario_2()
+        {
+            // Arrange
+            Product butter = new Product(config.BUTTER, config.PRICE_PER_UNIT_BUTTER);
+            Product bread = new Product(config.BREAD, config.PRICE_PER_UNIT_BREAD);
+            Product milk = new Product(config.MILK, config.PRICE_PER_UNIT_MILK);
+            LineItem line1 = new LineItem(butter, 2);
+            LineItem line2 = new LineItem(bread, 2); 
+            Basket basket = new Basket(new List<LineItem> { line1, line2});
+
+            //Act
+            var result = 3.10M;
+
+            //Assert//Assert 
+            Assert.AreEqual(result, basket.GetSumTotal());
+        }
+
+        [TestMethod]
+        public void Test_Scenario_3()
+        {
+            // Arrange
+            Product item = new Product(config.MILK, config.PRICE_PER_UNIT_MILK);
+            LineItem line = new LineItem(item, 4);
+            Basket basket = new Basket(new List<LineItem> { line });
+
+            //Act
+            var result = 3.45M;
+
+            //Assert//Assert 
+            Assert.AreEqual(result, basket.ApplyMilkOffer());
+        }
+
+        [TestMethod]
+        public void Test_Scenario_4()
         {
             // Arrange
             Product butter = new Product(config.BUTTER, config.PRICE_PER_UNIT_BUTTER);
@@ -131,24 +198,11 @@ namespace UnitTestBasketApp
             Basket basket = new Basket(new List<LineItem> { line1, line2, line3 });
 
             //Act
-            var result = 3.10M;
+            var result = 9.00M;
 
             //Assert//Assert 
-            Assert.AreEqual(result, basket.ApplyButterDiscount());
+            Assert.AreEqual(result, basket.GetSumTotal());
         }
-        [TestMethod]
-        public void TestMilk_Deal()
-        {
-            // Arrange
-            Product item = new Product(config.MILK, config.PRICE_PER_UNIT_MILK);
-            LineItem line = new LineItem(item, 4); 
-            Basket basket = new Basket(new List<LineItem> { line });
 
-            //Act
-            var result = 3.45M;
-
-            //Assert//Assert 
-            Assert.AreEqual(result, basket.ApplyMilkOffer());
-        }
     }
 }
