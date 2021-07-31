@@ -8,8 +8,6 @@ namespace UnitTestBasketApp
     [TestClass]
     public class UnitTest1
     {
-        private IList<Product> products;
-
         [TestMethod]
         public void TestBasket_Balance_Is_Returned()
         {
@@ -17,7 +15,7 @@ namespace UnitTestBasketApp
             Services basketService = new Services(null);
 
             // Act
-            double testResult = 0.00;
+            decimal testResult = 0.00M;
 
             //Assert
             Assert.AreEqual(testResult, basketService.GetBasketTotal());
@@ -31,7 +29,7 @@ namespace UnitTestBasketApp
 
             // Act
             string name = "Butter";
-            double cost = 80;
+            decimal cost = 80;
 
             //Assert
             Assert.IsNotNull(prod);
@@ -91,9 +89,9 @@ namespace UnitTestBasketApp
         public void TestButter_Deal_Applies()
         {
             // Arrange
-            Product prod = new Product("Butter", 80);
-            LineItem line = new LineItem(prod, 34);
-            LineItem line2 = new LineItem(prod, 4);
+            Product prod = new Product("Butter", 0);
+            LineItem line = new LineItem(prod, 0);
+            LineItem line2 = new LineItem(prod, 0);
             Basket basket = new Basket(new List<LineItem> {
                 line,
                 line2,
@@ -106,6 +104,25 @@ namespace UnitTestBasketApp
             Assert.AreEqual(result, basket.ApplyButterDiscount());
         }
 
+        [TestMethod]
+        public void TestButter_Deal_With_Item_Each()
+        {
+            // Arrange
+            Product bread = new Product("Butter", Deals.PRICE_PER_UNIT_BUTTER);
+            Product butter = new Product("Bread", Deals.PRICE_PER_UNIT_BREAD);
+            LineItem line = new LineItem(bread, 2);
+            LineItem line2 = new LineItem(butter, 2);
+            Basket basket = new Basket(new List<LineItem> {
+                line,
+                line2,
+            });
+
+            //Act
+            var result = 3.10M;
+
+            //Assert//Assert 
+            Assert.AreEqual(result, basket.ApplyButterDiscount());
+        }
         [TestMethod]
         public void TestMilk_Deal()
         {

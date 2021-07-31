@@ -6,6 +6,6 @@ namespace BasketApp
 {
     public interface IService
     {
-        double GetBasketTotal();
+        decimal GetBasketTotal();
     }
 }

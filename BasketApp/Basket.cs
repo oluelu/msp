@@ -29,10 +29,10 @@ namespace BasketApp
     {
         public LineItem(Product productName, int unit)
         {
-            this.ProductName = productName;
+            this.Item = productName;
             this.Unit = unit;
         }
-        public Product ProductName { get; set; }
+        public Product Item { get; set; }
         public int Unit { get; set; }
     }
 

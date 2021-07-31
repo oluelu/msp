@@ -20,9 +20,9 @@ namespace BasketApp
             _basket.ApplyMilkOffer();
         }
 
-        public double GetBasketTotal()
+        public decimal GetBasketTotal()
         {
-            return 0.00;
+            return 0.00M;
         } 
 
     }
