@@ -62,7 +62,7 @@ namespace BasketApp.Extensions
                     milkCount += product.Unit;
                 } 
             });
-            var totalPrice =  (milkCount / 3) * 2* config.PRICE_PER_UNIT_MILK + Math.Floor((decimal)(milkCount % 3)) * config.PRICE_PER_UNIT_MILK;
+            var totalPrice = Math.Floor((decimal)(milkCount / 4)) * 3* config.PRICE_PER_UNIT_MILK + Math.Floor((decimal)(milkCount % 4)) * config.PRICE_PER_UNIT_MILK;
             return totalPrice;
         }
 
