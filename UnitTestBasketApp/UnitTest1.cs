@@ -30,11 +30,11 @@ namespace UnitTestBasketApp
         public void TestProduct_Is_Created()
         {
             // Arrange
-            Product prod = new Product(config.BUTTER, 80);
+            Product prod = new Product(config.BUTTER, 0.80M);
 
             // Act
             string name = "Butter";
-            decimal cost = 80;
+            decimal cost = 0.80M;
 
             //Assert
             Assert.IsNotNull(prod);
@@ -46,7 +46,7 @@ namespace UnitTestBasketApp
         public void TestLine_Is_Created()
         {
             // Arrange
-            Product prod = new Product(config.BUTTER, 80);
+            Product prod = new Product(config.BUTTER, 0.80M);
             LineItem line = new LineItem(prod, 34);
 
             // Act
@@ -62,7 +62,7 @@ namespace UnitTestBasketApp
         public void TestBasket_Is_Created()
         {
             // Arrange
-            Product prod = new Product(config.BUTTER, 80);
+            Product prod = new Product(config.BUTTER, 0.80M);
             LineItem line = new LineItem(prod, 34);
             Basket basket = new Basket(new List<LineItem> { line });
 
@@ -74,7 +74,7 @@ namespace UnitTestBasketApp
         public void TestBasket_Has_Multiple_Items()
         {
             // Arrange
-            Product prod = new Product(config.BUTTER, 80);
+            Product prod = new Product(config.BUTTER, 0.80M);
             LineItem line = new LineItem(prod, 34);
             LineItem line2 = new LineItem(prod, 4);
             Basket basket = new Basket(new List<LineItem> { line,line2 });
@@ -196,6 +196,26 @@ namespace UnitTestBasketApp
             //Assert 
             Assert.AreEqual(result, basket.GetSumTotal());
         }
+
+        [TestMethod]
+        public void Test_Multiple_Lines()
+        {
+            // Arrange
+            LineItem line1 = new LineItem(butter, 3);
+            LineItem line2 = new LineItem(bread, 3);
+            LineItem line3 = new LineItem(milk, 5);
+            LineItem line4 = new LineItem(butter, 4);
+            LineItem line5 = new LineItem(bread, 2);
+            LineItem line6 = new LineItem(milk, 6);
+            Basket basket = new Basket(new List<LineItem> { line1, line2, line3, line4, line5, line6 });
+
+            //Act
+            var result = 19.45M;
+
+            //Assert 
+            Assert.AreEqual(result, basket.GetSumTotal());
+        }
+
 
     }
 }

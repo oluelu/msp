@@ -7,8 +7,9 @@ namespace BasketApp.Extensions
     { 
         // Returns cost of Bread & Butter
         public static decimal ApplyButterDiscount(this IBasket basket)
-        { 
-            if(basket.ItemCount() == 0) return 0.00M;
+        {
+            decimal discount = 0.5M;
+            if (basket.ItemCount() == 0) return 0.00M;
 
             int butterCount = 0;
             int breadCount= 0;
@@ -36,11 +37,11 @@ namespace BasketApp.Extensions
             {
                 if (breadCount >= dealCount)
                 {
-                    subTotal_Bread = (dealCount * 0.5M * config.PRICE_PER_UNIT_BREAD) + ((breadCount - dealCount) * config.PRICE_PER_UNIT_BREAD);
+                    subTotal_Bread = (dealCount * discount * config.PRICE_PER_UNIT_BREAD) + ((breadCount - dealCount) * config.PRICE_PER_UNIT_BREAD);
                 }
                 else
                 {
-                    subTotal_Bread = dealCount * 0.5M * config.PRICE_PER_UNIT_BREAD;
+                    subTotal_Bread = dealCount * discount * config.PRICE_PER_UNIT_BREAD;
                 }
             }
             else
