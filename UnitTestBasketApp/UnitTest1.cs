@@ -9,6 +9,10 @@ namespace UnitTestBasketApp
     [TestClass]
     public class UnitTest1
     {
+        Product butter = new Product(config.BUTTER, config.PRICE_PER_UNIT_BUTTER);
+        Product bread = new Product(config.BREAD, config.PRICE_PER_UNIT_BREAD);
+        Product milk = new Product(config.MILK, config.PRICE_PER_UNIT_MILK);
+
         [TestMethod]
         public void TestBasket_Balance_Is_Returned()
         {
@@ -100,25 +104,6 @@ namespace UnitTestBasketApp
         }
 
         [TestMethod]
-        public void Test_Butter_Offers()
-        {
-            // Arrange
-            Product bread = new Product(config.BUTTER, config.PRICE_PER_UNIT_BUTTER);
-            Product butter = new Product(config.BREAD, config.PRICE_PER_UNIT_BREAD);
-            Product milk = new Product(config.MILK, config.PRICE_PER_UNIT_MILK);
-            LineItem line1 = new LineItem(butter, 1);
-            LineItem line2 = new LineItem(bread, 1);
-            LineItem line3 = new LineItem(milk, 0);
-            Basket basket = new Basket(new List<LineItem> { line1, line2, line3 });
-
-            //Act
-            var result = 1.80M;
-
-            //Assert//Assert 
-            Assert.AreEqual(result, basket.ApplyButterDiscount());
-        }
-
-        [TestMethod]
         public void TestMilk_Deal()
         {
             // Arrange
@@ -133,13 +118,27 @@ namespace UnitTestBasketApp
             Assert.AreEqual(result, basket.ApplyMilkOffer());
         }
 
+
+        [TestMethod]
+        public void Test_Butter_Offers()
+        {
+            // Arrange
+            LineItem line1 = new LineItem(butter, 1);
+            LineItem line2 = new LineItem(bread, 1);
+            LineItem line3 = new LineItem(milk, 0);
+            Basket basket = new Basket(new List<LineItem> { line1, line2, line3 });
+
+            //Act
+            var result = 1.80M;
+
+            //Assert//Assert 
+            Assert.AreEqual(result, basket.ApplyButterDiscount());
+        }
+
         [TestMethod]
         public void Test_Scenario_1()
         {
             // Arrange
-            Product butter = new Product(config.BUTTER, config.PRICE_PER_UNIT_BUTTER);
-            Product bread = new Product(config.BREAD, config.PRICE_PER_UNIT_BREAD);
-            Product milk = new Product(config.MILK, config.PRICE_PER_UNIT_MILK);
             LineItem line1 = new LineItem(butter, 1);
             LineItem line2 = new LineItem(bread, 1);
             LineItem line3 = new LineItem(milk, 1);
@@ -156,9 +155,6 @@ namespace UnitTestBasketApp
         public void Test_Scenario_2()
         {
             // Arrange
-            Product butter = new Product(config.BUTTER, config.PRICE_PER_UNIT_BUTTER);
-            Product bread = new Product(config.BREAD, config.PRICE_PER_UNIT_BREAD);
-            Product milk = new Product(config.MILK, config.PRICE_PER_UNIT_MILK);
             LineItem line1 = new LineItem(butter, 2);
             LineItem line2 = new LineItem(bread, 2); 
             Basket basket = new Basket(new List<LineItem> { line1, line2});
@@ -189,9 +185,6 @@ namespace UnitTestBasketApp
         public void Test_Scenario_4()
         {
             // Arrange
-            Product butter = new Product(config.BUTTER, config.PRICE_PER_UNIT_BUTTER);
-            Product bread = new Product(config.BREAD, config.PRICE_PER_UNIT_BREAD);
-            Product milk = new Product(config.MILK, config.PRICE_PER_UNIT_MILK);
             LineItem line1 = new LineItem(butter, 2);
             LineItem line2 = new LineItem(bread, 1);
             LineItem line3 = new LineItem(milk, 8);
