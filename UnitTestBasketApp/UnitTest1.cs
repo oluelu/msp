@@ -82,7 +82,7 @@ namespace UnitTestBasketApp
             //Act
             var itemCount = 2;
 
-            //Assert//Assert
+            //Assert
             Assert.IsNotNull(basket);
             Assert.AreEqual(itemCount, basket.ItemCount());
         }
@@ -99,7 +99,7 @@ namespace UnitTestBasketApp
             //Act
             var result = 0.00M;
 
-            //Assert//Assert 
+            //Assert 
             Assert.AreEqual(result, basket.ApplyButterDiscount());
         }
 
@@ -114,7 +114,7 @@ namespace UnitTestBasketApp
             //Act
             var result = 6.90M;
 
-            //Assert//Assert 
+            //Assert 
             Assert.AreEqual(result, basket.ApplyMilkOffer());
         }
 
@@ -131,7 +131,7 @@ namespace UnitTestBasketApp
             //Act
             var result = 1.80M;
 
-            //Assert//Assert 
+            //Assert 
             Assert.AreEqual(result, basket.ApplyButterDiscount());
         }
 
@@ -147,7 +147,7 @@ namespace UnitTestBasketApp
             //Act
             var result = 2.95M;
 
-            //Assert//Assert 
+            //Assert 
             Assert.AreEqual(result, basket.GetSumTotal());
         }
 
@@ -162,7 +162,7 @@ namespace UnitTestBasketApp
             //Act
             var result = 3.10M;
 
-            //Assert//Assert 
+            //Assert 
             Assert.AreEqual(result, basket.GetSumTotal());
         }
 
@@ -177,7 +177,7 @@ namespace UnitTestBasketApp
             //Act
             var result = 3.45M;
 
-            //Assert//Assert 
+            //Assert 
             Assert.AreEqual(result, basket.ApplyMilkOffer());
         }
 
@@ -193,7 +193,7 @@ namespace UnitTestBasketApp
             //Act
             var result = 9.00M;
 
-            //Assert//Assert 
+            //Assert 
             Assert.AreEqual(result, basket.GetSumTotal());
         }
 
