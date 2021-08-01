@@ -87,7 +87,7 @@ namespace UnitTestBasketApp
             Assert.AreEqual(itemCount, basket.ItemCount());
         }
 
-        [TestMethod] //review
+        [TestMethod] 
         public void TestButter_Offer_Init()
         {
             // Arrange
